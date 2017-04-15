@@ -6,20 +6,17 @@ import styles, { CHEVRON_SIZE } from './styles';
 import { capitalizeFirstLetter } from '../../helpers/string';
 import colors from '../../config/colors';
 
-const ListItem = ({ contact, onPress}) => {
-  const name = `${capitalizeFirstLetter(contact.name.first)} ${capitalizeFirstLetter(contact.name.last)}`;
+const ListItem = ({ contact, onPress }) => {
+  const name = (contact.name.first && contact.name.last) ? `${capitalizeFirstLetter(contact.name.first)} ${capitalizeFirstLetter(contact.name.last)}` : `${contact.name}`;
   const iconName = Platform.OS === 'ios' ? 'ios-arrow-forward' : 'md-arrow-forward';
-
+  const image = contact.picture ? <Image source={{ uri: contact.picture.thumbnail }} style={styles.avatar} /> : null;
   return (
     <TouchableHighlight
       onPress={onPress}
       underlayColor={colors.rowUnderlay}
     >
       <View style={styles.row}>
-        <Image
-          source={{ uri: contact.picture.thumbnail }}
-          style={styles.avatar}
-        />
+        {image}
         <View>
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.email}>{contact.email}</Text>

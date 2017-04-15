@@ -139,7 +139,7 @@ export const Drawer = DrawerNavigator({
     }
   },
   Service: {
-    screen: MeStack,
+    screen: ServiceStack,
     navigationOptions: {
       drawer: {
         label: 'Service',
