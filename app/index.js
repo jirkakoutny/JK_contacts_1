@@ -1,19 +1,19 @@
-// import React from 'react';
-// import { Platform } from 'react-native';
+import React from 'react';
+import { Platform } from 'react-native';
 
-// import { Tabs, Drawer } from './config/router.js';
+import { Tabs, Drawer } from './config/router.js';
 
-// const App = () => {
-//   if (Platform.OS === 'ios') {
-//     return <Tabs />
-//   }
+const App = () => {
+  if (Platform.OS === 'ios') {
+    return <Tabs />
+  }
 
-//   return <Drawer />;
-// };
+  return <Drawer />;
+};
 
-// export default App;
+export default App;
 
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 import NameList from './NameList';
@@ -37,4 +37,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App;*/
