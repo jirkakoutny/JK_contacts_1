@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Platform } from 'react-native';
 import { Provider } from 'react-redux';
-import configureStore from './store';
+import configureStore from './redux/store';
 
 // Delete
 import { Tabs, Drawer } from './config/router.js';

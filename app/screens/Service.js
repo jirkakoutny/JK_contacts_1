@@ -8,7 +8,7 @@ import { me } from '../config/data';
 import { PrimaryButton } from '../components/Buttons';
 import { ListItem } from '../components/ListItem';
 import { contacts } from '../config/data';
-import { requestPerson, requestPersonByUrl, connectionState } from '../actions';
+import { requestPerson, requestPersonByUrl, connectionState } from '../redux/actions';
 
 class Service extends Component {
     componentDidMount() {
