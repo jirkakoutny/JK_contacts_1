@@ -18,17 +18,12 @@ class App extends Component {
   render() {
     if (this.state.isLoading)
       return null;
-
-    if (Platform.OS === 'ios')
-      return (
-        <Provider store={this.state.store}>
-          <Tabs />
-        </Provider>
-      );
+    
+    var index = Platform.OS === 'ios' ? <Tabs/> : <Drawer/>
 
     return (
       <Provider store={this.state.store}>
-        <Drawer />
+        {index}
       </Provider>
     );
   }
