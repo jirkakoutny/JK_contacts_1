@@ -23,54 +23,54 @@ const LeftDrawerButton = ({ navigate }) => {
 export const ContactsStack = StackNavigator({
   Contacts: {
     screen: Contacts,
-    navigationOptions: {
+    navigationOptions: ({navigation}) => ({
       title: 'Contacts',
-      header: (props) => ({
-        left: <LeftDrawerButton {...props} />
-      }),
-    },
+      headerLeft: ( 
+        <LeftDrawerButton {...navigation} />
+      ),
+    }),
   },
   Details: {
     screen: Details,
-    navigationOptions: {
-      title: ({ state }) => `${capitalizeFirstLetter(state.params.name.first)} ${capitalizeFirstLetter(state.params.name.last)}`,
-    },
+    navigationOptions: ({navigation}) => ({
+      title: `${capitalizeFirstLetter(navigation.state.params.name.first)} ${capitalizeFirstLetter(navigation.state.params.name.last)}`,
+    }),
   },
 });
 
 export const NewContactStack = StackNavigator({
   NewContact: {
     screen: NewContact,
-    navigationOptions: {
+    navigationOptions: ({navigation}) => ({
       title: 'New Contact',
-      header: (props) => ({
-        left: <LeftDrawerButton {...props} />
-      }),
-    },
+      headerLeft: ( 
+        <LeftDrawerButton {...navigation} />
+      ),
+    }),
   },
 });
 
 export const MeStack = StackNavigator({
   Me: {
     screen: Me,
-    navigationOptions: {
+    navigationOptions: ({navigation}) => ({
       title: 'Me',
-      header: (props) => ({
-        left: <LeftDrawerButton {...props} />
-      }),
-    },
+      headerLeft: ( 
+        <LeftDrawerButton {...navigation} />
+      ),
+    }),
   },
 });
 
 export const ServiceStack = StackNavigator({
   Me: {
     screen: Service,
-    navigationOptions: {
+    navigationOptions: ({navigation}) => ({
       title: 'Service',
-      header: (props) => ({
-        left: <LeftDrawerButton {...props} />
-      }),
-    },
+      headerLeft: ( 
+        <LeftDrawerButton {...navigation} />
+      ),
+    }),
   },
 });
 
