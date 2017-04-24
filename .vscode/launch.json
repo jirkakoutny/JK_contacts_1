@@ -1,6 +1,6 @@
 {
     "version": "0.2.0",
-    "configurations": [
+    "rurations": [
         {
             "name": "Debug Android",
             "program": "${workspaceRoot}/.vscode/launchReactNative.js",
