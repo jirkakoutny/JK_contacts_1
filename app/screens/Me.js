@@ -39,15 +39,11 @@ class Me extends Component {
 
   render() {
     console.log('Rendering me');
+    console.log(this.props);
+    const me = this.props.me;
     return (
       <ScrollView style={{ backgroundColor: colors.background }}>
-        {/*<Header {...me} />*/}
-        <Text>
-          {this.props.mo.name.first}
-        </Text>
-        <Text>
-          {this.props.mo.name.last}
-        </Text>
+        <Header {...me} />
         <PrimaryButton
           label="Edit Profile"
           onPress={() => null}
@@ -56,8 +52,8 @@ class Me extends Component {
           label={this.props.isConnected ? 'Load me' : 'Disconnected'}
           onPress={() => this.props.dispatch(loadMe({ index: 1 }))}
         />
-        {/*<Actions {...me} />
-        <Info {...me} />*/}
+        <Actions {...me} />
+        <Info {...me} />
       </ScrollView>
     );
   }
@@ -66,7 +62,7 @@ class Me extends Component {
 // map redux state properties to 
 const mapStateToProps = (state) => {
   return {
-    mo: state.me,
+    me: state.me,
     people: state.people,
     personIndex: state.personIndex,
     actionQueue: state.actionQueue,
