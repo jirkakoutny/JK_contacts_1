@@ -10,11 +10,16 @@ const firebaseApp = initializeApp({
   storageBucket: config.STORAGE_BUCKET
 })
 
-export const itemsRef = firebaseApp.database().ref('items')
+// export const itemsRef = firebaseApp.database().ref('items')
 export const meRef = firebaseApp.database().ref('Me')
 // const connectedRef = firebaseApp.database().ref('.info/connected')
 
 export function syncFirebase(store) {
+  
+      meRef.on('value', (snapshot) => {
+        store.dispatch({ type: 'ME_LOADED', me: snapshot.val() });
+      })
+
 //   itemsRef.on('child_added', (snapshot) => {
 //     store.dispatch(addItemSuccess(snapshot.val()))
 //   })
