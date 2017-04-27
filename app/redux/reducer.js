@@ -3,6 +3,7 @@ import { me } from '../config/data';
 
 const initialState = {
   me: null,
+  contacts: [],
   personIndex: 1,
   people: [],
   actionQueue: [],
@@ -21,6 +22,42 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         me: action.me,
       });      
+    case 'CONTACTS_LOADED':
+      console.log('Contacts loaded...dispatched');
+      console.log(action.contacts);
+      return Object.assign({}, state,
+      {
+        contacts: action.contacts,
+      }
+      );         
+      case 'CONTACTS_CHILD_ADDED':
+      console.log('Contacts child added...dispatched');
+      console.log(action);
+      console.log('Length ' + state.contacts.length);
+      var dup_array = state.contacts.slice().concat([action.contact]);
+      console.log('Length ' + dup_array.length);
+      return Object.assign({}, state, {
+        contacts: dup_array,
+      });   
+case 'CONTACTS_CHILD_CHANGED':
+      console.log('Contacts child changed...dispatched');
+      console.log(action);
+      const index = state.contacts.map(i => i.email).indexOf(action.contact.email)
+console.log(index);
+    var dup_array = state.contacts.slice();
+      dup_array[index] = action.contact;
+      return Object.assign({}, state, {
+        contacts: dup_array,
+      });   
+case 'CONTACTS_CHILD_REMOVED':
+      console.log('Contacts child changed...dispatched');
+      console.log(action);
+      
+      var dup_array = state.contacts.slice().filter(({ email }) => email !== action.contact.email);
+      return Object.assign({}, state, {
+        contacts: dup_array,
+      });       
+
     case 'SAVE_PERSON':
       return Object.assign({}, state, {
         people: [action.person].concat(state.people),

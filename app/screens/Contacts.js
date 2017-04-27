@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { FlatList, View, Text } from 'react-native';
+import { connect } from 'react-redux';
 
-import { contacts } from '../config/data';
+// import { contacts } from '../config/data';
 import colors from '../config/colors';
 import { ListItem } from '../components/ListItem';
 
@@ -11,6 +12,9 @@ class Contacts extends Component {
   };
 
   render() {
+        console.log('Rendering contacts');
+    console.log(this.props);
+    const contacts = this.props.contacts;
     return (
       <FlatList
         style={{ backgroundColor: colors.background }}
@@ -24,4 +28,16 @@ class Contacts extends Component {
   }
 }
 
-export default Contacts;
+// map redux state properties to 
+const mapStateToProps = (state) => {
+  return {
+    me: state.me,
+    contacts: state.contacts,
+    people: state.people,
+    personIndex: state.personIndex,
+    actionQueue: state.actionQueue,
+    isConnected: state.isConnected,
+  };
+};
+
+export default connect(mapStateToProps)(Contacts);

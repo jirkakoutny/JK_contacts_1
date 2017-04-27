@@ -51,6 +51,10 @@ export const loadMe = ({ index = 1 }) => {
   };
 };
 
+export const meLoaded = ({ me }) => {
+  return { type: 'ME_LOADED', me: mes };
+};
+
 export const goOnline = ({  }) => {
   return { type: 'CONNECTION_ONLINE' };
 };
