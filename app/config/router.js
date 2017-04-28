@@ -7,7 +7,6 @@ import Contacts from '../screens/Contacts';
 import Details from '../screens/Details';
 import NewContact from '../screens/NewContact';
 import Me from '../screens/Me';
-import Service from '../screens/Service';
 import { DrawerButton } from '../components/Header';
 
 import { capitalizeFirstLetter } from '../helpers/string';
@@ -62,18 +61,6 @@ export const MeStack = StackNavigator({
   },
 });
 
-export const ServiceStack = StackNavigator({
-  Me: {
-    screen: Service,
-    navigationOptions: ({navigation}) => ({
-      title: 'Service',
-      headerLeft: ( 
-        <LeftDrawerButton {...navigation} />
-      ),
-    }),
-  },
-});
-
 export const Tabs = TabNavigator({
   Contacts: {
     screen: ContactsStack,
@@ -101,16 +88,7 @@ export const Tabs = TabNavigator({
         icon: ({ tintColor }) => <Icon name="ios-contact" size={35} color={tintColor} />
       }
     }
-  },
-  Service: {
-    screen: ServiceStack,
-    navigationOptions: {
-      tabBar: {
-        label: 'Service',
-        icon: ({ tintColor }) => <Icon name="ios-build" size={35} color={tintColor} />
-      }
-    }
-  },
+  }
 });
 
 export const Drawer = DrawerNavigator({
@@ -137,13 +115,5 @@ export const Drawer = DrawerNavigator({
         label: 'Me',
       }
     }
-  },
-  Service: {
-    screen: ServiceStack,
-    navigationOptions: {
-      drawer: {
-        label: 'Service',
-      }
-    }
-  },
+  }
 })
