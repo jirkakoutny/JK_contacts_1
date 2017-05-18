@@ -13,13 +13,14 @@ class App extends Component {
       isLoading: true,
       store: configureStore(() => this.setState({ isLoading: false })),
     };
+    console.log("******************** App constructor ******************** ");
   }
 
   render() {
     if (this.state.isLoading)
       return null;
-    
-    var index = Platform.OS === 'ios' ? <Tabs/> : <Drawer/>
+
+    var index = Platform.OS === 'ios' ? <Tabs /> : <Drawer />
 
     return (
       <Provider store={this.state.store}>

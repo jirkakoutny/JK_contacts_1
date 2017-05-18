@@ -21,42 +21,52 @@ const reducer = (state = initialState, action) => {
       console.log(action);
       return Object.assign({}, state, {
         me: action.me,
-      });      
+      });
     case 'CONTACTS_LOADED':
       console.log('Contacts loaded...dispatched');
       console.log(action.contacts);
       return Object.assign({}, state,
-      {
-        contacts: action.contacts,
-      }
-      );         
-      case 'CONTACTS_CHILD_ADDED':
+        {
+          contacts: action.contacts,
+        }
+      );
+    case 'CONTACTS_CHILD_ADDED':
       console.log('Contacts child added...dispatched');
       console.log(action);
       console.log('Length ' + state.contacts.length);
-      var dup_array = state.contacts.slice().concat([action.contact]);
+      var dup_array = state.contacts.slice();
+      const indexA = dup_array.map(i => i.email).indexOf(action.contact.email)
+      console.log(indexA);
+      if (indexA > -1) {
+        console.log('Already have item on index ' + indexA);
+        dup_array[indexA] = action.contact;
+      }
+      else {
+        console.log('Adding  item');
+        dup_array = dup_array.concat([action.contact]);
+      }
       console.log('Length ' + dup_array.length);
       return Object.assign({}, state, {
         contacts: dup_array,
-      });   
-case 'CONTACTS_CHILD_CHANGED':
+      });
+    case 'CONTACTS_CHILD_CHANGED':
       console.log('Contacts child changed...dispatched');
       console.log(action);
       const index = state.contacts.map(i => i.email).indexOf(action.contact.email)
-console.log(index);
-    var dup_array = state.contacts.slice();
+      console.log(index);
+      var dup_array = state.contacts.slice();
       dup_array[index] = action.contact;
       return Object.assign({}, state, {
-        contacts: dup_array,
-      });   
-case 'CONTACTS_CHILD_REMOVED':
+        contacts: dup_array
+      });
+    case 'CONTACTS_CHILD_REMOVED':
       console.log('Contacts child changed...dispatched');
       console.log(action);
-      
+
       var dup_array = state.contacts.slice().filter(({ email }) => email !== action.contact.email);
       return Object.assign({}, state, {
         contacts: dup_array,
-      });       
+      });
 
     case 'SAVE_PERSON':
       return Object.assign({}, state, {
@@ -74,6 +84,16 @@ case 'CONTACTS_CHILD_REMOVED':
       return Object.assign({}, state, {
         actionQueue: _.without(state.actionQueue, action.payload),
       });
+    // case SIGN_IN_SUCCESS:
+    //   // return { ...state, ...INITIAL_STATE, user: action.payload };
+    //   return Object.assign({}, state, {
+    //     contacts: dup_array
+    //   });
+    // case SIGN_IN_FAILURE:
+    //   // return { ...state, ...INITIAL_STATE, error: action.payload };
+    //   return Object.assign({}, state, {
+    //     contacts: dup_array
+    //   });
     default:
       return state;
   }

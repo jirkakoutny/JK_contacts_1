@@ -16,6 +16,8 @@ export default configureStore = (onComplete) => {
 
     syncFirebase(store)
 
+    //AsyncStorage.clear();
+
     persistStore(store, { storage: AsyncStorage }, onComplete);
 
     return store;
