@@ -86,10 +86,15 @@ export const signin = ({ login, password }) => {
       console.log('Signing in failed on ' + errorCode);
       console.log('Signing in failed with ' + errorMessage);
 
-      dispatch({ type: 'SIGN_IN_SUCCESS' });
+      dispatch({ type: 'SIGN_IN_FAILURE' });
       //  return { type: 'CONNECTION_ONLINE' }; 
     });
   };
+};
+
+export const setAuthUser = (user) => {
+  console.log('Setauthuserr user: ' + user);
+  return { type: 'SET_AUTH_USER', payload: user };
 };
 
 export const meLoaded = ({ me }) => {

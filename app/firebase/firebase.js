@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase'
-// import { addItemSuccess, removeItemSuccess, goOnline, goOffline } from './actions/items'
+import { setAuthUser, addItemSuccess, removeItemSuccess, goOnline, goOffline } from '../redux/actions'
 
 import config from '../config/firebase'
 
@@ -60,7 +60,9 @@ export function syncFirebase(store) {
 
     if (user) {
       console.log("Authentication state changed - authenticated");
-      store.dispatch({ type: 'SIGN_IN_SUCCESS', payload: user });
+      console.log(user);
+     // store.dispatch({ type: 'SIGN_IN_SUCCESS', payload: user });
+      store.dispatch(setAuthUser(user));
     }
     else {
       console.log("Authentication state changed - NOT authenticated");

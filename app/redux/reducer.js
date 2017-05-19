@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
   console.log(state, action);
   switch (action.type) {
 
-    case 'SIGN_IN_SUCCESS':
+    case 'SET_AUTH_USER':
     console.log('*****************************');
       // return { ...state, ...INITIAL_STATE, user: action.payload };
       return Object.assign({}, state, {
