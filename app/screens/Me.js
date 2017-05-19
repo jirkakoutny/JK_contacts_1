@@ -6,7 +6,7 @@ import { Header, Actions, Info } from '../components/UserDetails';
 import colors from '../config/colors';
 // import { me } from '../config/data';
 import { PrimaryButton } from '../components/Buttons';
-import { loadMe, requestPerson, requestPersonByUrl, connectionState } from '../redux/actions';
+import { logout, loadMe, signin, requestPerson, requestPersonByUrl, connectionState } from '../redux/actions';
 
 class Me extends Component {
   componentDidMount() {
@@ -52,6 +52,14 @@ class Me extends Component {
           label={this.props.isConnected ? 'Load me' : 'Disconnected'}
           onPress={() => this.props.dispatch(loadMe({ index: 1 }))}
         />
+        <PrimaryButton
+          label={this.props.user ? this.props.user.email : "Unknown"}
+          onPress={() => this.props.dispatch(signin({ login: "jirka@koutny.cz", password: "test01" }))}
+        />
+        <PrimaryButton
+          label='LOGOUT'
+          onPress={() => this.props.dispatch(logout())}
+        />
         <Actions {...me} />
         <Info {...me} />
       </ScrollView>
@@ -67,6 +75,7 @@ const mapStateToProps = (state) => {
     personIndex: state.personIndex,
     actionQueue: state.actionQueue,
     isConnected: state.isConnected,
+    user: state.user
   };
 };
 

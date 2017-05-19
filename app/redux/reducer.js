@@ -8,10 +8,26 @@ const initialState = {
   people: [],
   actionQueue: [],
   isConnected: false,
+  user: null
 };
 
 const reducer = (state = initialState, action) => {
+  console.log('//////////////////////////////');
+  console.log('//////////////////////////////');
+  console.log('//////////////////////////////');
+  console.log(state, action);
   switch (action.type) {
+
+    case 'SIGN_IN_SUCCESS':
+    console.log('*****************************');
+      // return { ...state, ...INITIAL_STATE, user: action.payload };
+      return Object.assign({}, state, {
+        user: action.payload
+      });
+    case 'LOGOUT_SUCCESS':
+    return Object.assign({}, state, {
+        user: null
+      });
     case 'INC_PERSON_INDEX':
       return Object.assign({}, state, {
         personIndex: state.personIndex + 1,
@@ -84,16 +100,16 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         actionQueue: _.without(state.actionQueue, action.payload),
       });
-    // case SIGN_IN_SUCCESS:
+    // case 'SIGN_IN_SUCCESS':
     //   // return { ...state, ...INITIAL_STATE, user: action.payload };
     //   return Object.assign({}, state, {
-    //     contacts: dup_array
+    //     user: action.payload
     //   });
-    // case SIGN_IN_FAILURE:
-    //   // return { ...state, ...INITIAL_STATE, error: action.payload };
-    //   return Object.assign({}, state, {
-    //     contacts: dup_array
-    //   });
+   case 'SIGN_IN_FAILURE':
+      // return { ...state, ...INITIAL_STATE, error: action.payload };
+      return Object.assign({}, state, {
+        user: null
+      });
     default:
       return state;
   }

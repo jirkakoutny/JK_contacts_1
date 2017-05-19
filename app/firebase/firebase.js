@@ -13,6 +13,7 @@ const firebaseApp = initializeApp({
 export const contactsRef = firebaseApp.database().ref('Contacts')
 export const meRef = firebaseApp.database().ref('Me')
 // const connectedRef = firebaseApp.database().ref('.info/connected')
+export const authRef = firebaseApp.auth();
 
 export function syncFirebase(store) {
 
@@ -49,23 +50,22 @@ export function syncFirebase(store) {
     // deleteComment(postElement, data.key);
   });
 
-  
-    firebaseApp.auth().onAuthStateChanged((user) => {
-      
-      console.log("Authentication state changed");
-      console.log(user);
 
-      // this.setState({ loaded: true });
+  firebaseApp.auth().onAuthStateChanged((user) => {
 
-      if (user) {
-        console.log("Authentication state changed - authenticated");
-        store.dispatch({ type: SIGN_IN_SUCCESS, payload: user });
-      }
-      else
-      {
-        console.log("Authentication state changed - NOT authenticated");
-      }
-    });
+    console.log("Authentication state changed");
+    console.log(user);
+
+    // this.setState({ loaded: true });
+
+    if (user) {
+      console.log("Authentication state changed - authenticated");
+      store.dispatch({ type: 'SIGN_IN_SUCCESS', payload: user });
+    }
+    else {
+      console.log("Authentication state changed - NOT authenticated");
+    }
+  });
 
 
   //   itemsRef.on('child_removed', (snapshot) => {
