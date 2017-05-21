@@ -1,5 +1,8 @@
 import _ from 'lodash';
 import { me } from '../config/data';
+import { combineReducers } from 'redux'
+import * as NavigationStateUtils from 'NavigationStateUtils'
+import { NAV_PUSH, NAV_POP, NAV_JUMP_TO_KEY, NAV_JUMP_TO_INDEX, NAV_RESET } from './actions'
 
 const initialState = {
   me: null,
@@ -8,7 +11,11 @@ const initialState = {
   people: [],
   actionQueue: [],
   isConnected: false,
-  user: null
+  user: null,
+  index: 0,
+  routes: [
+    { key: 'First', title: 'First' }
+  ]
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,13 +26,13 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
 
     case 'SET_AUTH_USER':
-    console.log('*****************************');
+      console.log('*****************************');
       // return { ...state, ...INITIAL_STATE, user: action.payload };
       return Object.assign({}, state, {
         user: action.payload
       });
     case 'LOGOUT_SUCCESS':
-    return Object.assign({}, state, {
+      return Object.assign({}, state, {
         user: null
       });
     case 'INC_PERSON_INDEX':
@@ -105,7 +112,7 @@ const reducer = (state = initialState, action) => {
     //   return Object.assign({}, state, {
     //     user: action.payload
     //   });
-   case 'SIGN_IN_FAILURE':
+    case 'SIGN_IN_FAILURE':
       // return { ...state, ...INITIAL_STATE, error: action.payload };
       return Object.assign({}, state, {
         user: null
@@ -115,4 +122,9 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-export default reducer;
+const appReducers = combineReducers({
+  navigationState,
+  reducer
+})
+
+export default reduappReducerscer;
