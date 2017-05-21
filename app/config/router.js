@@ -7,6 +7,7 @@ import Contacts from '../screens/Contacts';
 import Details from '../screens/Details';
 import NewContact from '../screens/NewContact';
 import Me from '../screens/Me';
+import About from '../screens/About';
 import { DrawerButton } from '../components/Header';
 
 import { capitalizeFirstLetter } from '../helpers/string';
@@ -61,28 +62,47 @@ export const MeStack = StackNavigator({
   },
 });
 
+export const AboutStack = StackNavigator({
+  About: {
+    screen: About,
+    navigationOptions: ({ navigation }) => ({
+      title: 'About',
+      headerLeft: (
+        <LeftDrawerButton {...navigation} />
+      ),
+    }),
+  },
+});
+
 export const Tabs = TabNavigator({
   Contacts: {
     screen: ContactsStack,
     navigationOptions: {
-      tabBarLabel: 'Contacts',
+      tabBarLabel: 'Places',
       tabBarIcon: ({ tintColor }) => <Icon name="ios-list" size={35} color={tintColor} />
     }
   },
   NewContact: {
     screen: NewContactStack,
     navigationOptions: {
-      tabBarLabel: 'New Contact',
+      tabBarLabel: 'Feedback',
       tabBarIcon: ({ tintColor }) => <Icon name="ios-add" size={35} color={tintColor} />
     }
   },
   Me: {
     screen: MeStack,
     navigationOptions: {
-      tabBarLabel: 'Me',
+      tabBarLabel: 'Profile',
       tabBarIcon: ({ tintColor }) => <Icon name="ios-contact" size={35} color={tintColor} />
     }
-  }
+  },
+  About: {
+    screen: AboutStack,
+    navigationOptions: {
+      tabBarLabel: 'About',
+      tabBarIcon: ({ tintColor }) => <Icon name="ios-contact" size={35} color={tintColor} />
+    }
+  },
 });
 
 export const Drawer = DrawerNavigator({
