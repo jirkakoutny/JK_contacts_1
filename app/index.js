@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Platform } from 'react-native';
 import { Provider } from 'react-redux';
 import configureStore from './redux/store';
-import AppContainer from './containers/AppContainer'
 
 // Delete
 import { Tabs, Drawer } from './config/router.js';
@@ -25,8 +24,7 @@ class App extends Component {
 
     return (
       <Provider store={this.state.store}>
-        {/*{index}*/}
-        <AppContainer/>
+        {index}
       </Provider>
     );
   }
