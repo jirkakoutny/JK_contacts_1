@@ -69,8 +69,10 @@ class Me extends Component {
 
 // map redux state properties to 
 const mapStateToProps = (state) => {
+  console.log('This is state ')
+  console.log(state);
   return {
-    me: state.me,
+    me: state.reducer.me,
     people: state.people,
     personIndex: state.personIndex,
     actionQueue: state.actionQueue,

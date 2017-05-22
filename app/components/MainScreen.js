@@ -1,29 +1,34 @@
-import React from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, Button, Platform } from 'react-native';
+import { StackNavigator, TabNavigator, DrawerNavigator } from 'react-navigation';
 
 import LoginStatusMessage from './LoginStatusMessage';
 import AuthButton from './AuthButton';
 import TestButton from './TestButton';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+import { DrawerButton } from '../components/Header';
+import { PrimaryButton } from '../components/Buttons';
+
+import Me from '../screens/Me';
+
+const LeftDrawerButton = ({ navigate }) => {
+  if (Platform.OS === 'android') {
+    return <DrawerButton onPress={() => navigate('DrawerOpen')} />
+  }
+
+  return null;
+}
+
+const MainScreen = StackNavigator({
+  Me: {
+    screen: Me,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Me',
+      headerLeft: (
+        <LeftDrawerButton {...navigation} />
+      ),
+    }),
   },
 });
-
-const MainScreen = () => (
-  <View style={styles.container}>
-    <LoginStatusMessage />
-    <AuthButton />
-    <TestButton />
-  </View>
-);
-
-MainScreen.navigationOptions = {
-  title: 'Home Screen JK',
-};
 
 export default MainScreen;

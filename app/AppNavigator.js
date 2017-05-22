@@ -1,16 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNavigationHelpers, StackNavigator } from 'react-navigation';
+import { addNavigationHelpers, StackNavigator, DrawerNavigator } from 'react-navigation';
 
 import LoginScreen from './components/LoginScreen';
 import MainScreen from './components/MainScreen';
 import ProfileScreen from './components/ProfileScreen';
 import TestScreen from './components/TestScreen';
 
-export const AppNavigator = StackNavigator({
+import MeStack from './config/router';
+
+// export const AppNavigator = StackNavigator({
+//   Login: { screen: LoginScreen },
+//   Main: { screen: MainScreen },
+//   Profile: { screen: ProfileScreen },
+//   Test: { screen: TestScreen },
+// });
+
+export const AppNavigator = DrawerNavigator({
   Login: { screen: LoginScreen },
-  Main: { screen: MainScreen },
+  Main: { screen: MainScreen, navigationOptions: {
+      drawer: {
+        label: 'Me',
+      }
+    } },
   Profile: { screen: ProfileScreen },
   Test: { screen: TestScreen },
 });

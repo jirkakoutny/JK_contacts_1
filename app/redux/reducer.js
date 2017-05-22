@@ -62,11 +62,7 @@ function auth(state = initialAuthState, action) {
   }
 }
 
-const AppReducer = combineReducers({
-  nav,
-  auth,
-  // reducer
-});
+
 
 const initialState = {
   me: null,
@@ -181,5 +177,11 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 }
+
+const AppReducer = combineReducers({
+  nav,
+  auth,
+  reducer
+});
 
 export default AppReducer;
