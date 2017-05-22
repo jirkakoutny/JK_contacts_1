@@ -17,24 +17,34 @@ const initialNavState = AppNavigator.router.getStateForAction(
 
 function nav(state = initialNavState, action) {
   let nextState;
+  console.log('Reducer action ' + action.type);
+  console.log('Reducer state ' + state);
   switch (action.type) {
     case 'Login':
+    console.log('Reducer login');
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.back(),
         state
       );
       break;
     case 'Logout':
+    console.log('Reducer logout');
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Login' }),
         state
       );
       break;
+      case 'Test':
+      console.log('Reducer TEST');
+            nextState = AppNavigator.router.getStateForAction(action, state);
+      break;
     default:
+    console.log('Reducer next');
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;
   }
 
+console.log('Reducer next state ' + nextState);
   // Simply return the original `state` if `nextState` is null or undefined.
   return nextState || state;
 }

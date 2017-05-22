@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 
 import LoginStatusMessage from './LoginStatusMessage';
 import AuthButton from './AuthButton';
+import TestButton from './TestButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,11 +18,12 @@ const MainScreen = () => (
   <View style={styles.container}>
     <LoginStatusMessage />
     <AuthButton />
+    <TestButton />
   </View>
 );
 
 MainScreen.navigationOptions = {
-  title: 'Home Screen',
+  title: 'Home Screen JK',
 };
 
 export default MainScreen;
