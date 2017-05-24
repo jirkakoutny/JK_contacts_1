@@ -4,7 +4,7 @@ import { me } from '../config/data';
 import { combineReducers } from 'redux';
 import { NavigationActions } from 'react-navigation';
 
-import { AppNavigator } from '../AppNavigator';
+import { AppNavigator } from '../config/router';
 
 // Start with two routes: The Main screen, with the Login screen on top.
 const firstAction = AppNavigator.router.getActionForPathAndParams('Main');

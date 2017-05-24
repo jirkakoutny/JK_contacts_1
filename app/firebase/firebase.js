@@ -16,7 +16,7 @@ export const meRef = firebaseApp.database().ref('Me')
 export const authRef = firebaseApp.auth();
 
 export function syncFirebase(store) {
-
+console.log('Firebase sync');
   meRef.on('value', (snapshot) => {
     console.log('Me data');
     console.log(snapshot.val());

@@ -1,7 +1,9 @@
 import React from 'react';
-import { StackNavigator, TabNavigator, DrawerNavigator } from 'react-navigation';
+import { addNavigationHelpers, StackNavigator, TabNavigator, DrawerNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Platform } from 'react-native';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Contacts from '../screens/Contacts';
 import Details from '../screens/Details';
@@ -11,6 +13,11 @@ import { DrawerButton } from '../components/Header';
 
 import { capitalizeFirstLetter } from '../helpers/string';
 
+import LoginScreen from '../components/LoginScreen';
+import MainScreen from '../components/MainScreen';
+import ProfileScreen from '../components/ProfileScreen';
+import TestScreen from '../components/TestScreen';
+
 const LeftDrawerButton = ({ navigate }) => {
   if (Platform.OS === 'android') {
     return <DrawerButton onPress={() => navigate('DrawerOpen')} />
@@ -18,6 +25,33 @@ const LeftDrawerButton = ({ navigate }) => {
 
   return null;
 }
+
+export const AppNavigator = DrawerNavigator({
+  Login: { screen: LoginScreen },
+  Main: { screen: MainScreen, navigationOptions: {
+      drawer: {
+        label: 'Me',
+      }
+    } },
+  Profile: { screen: ProfileScreen },
+  Test: { screen: TestScreen },
+});
+
+const AppWithNavigationState = ({ dispatch, nav }) => (
+  <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
+);
+
+AppWithNavigationState.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  nav: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  nav: state.nav,
+});
+
+export default connect(mapStateToProps)(AppWithNavigationState);
+
 
 export const ContactsStack = StackNavigator({
   Contacts: {

@@ -5,7 +5,7 @@ import { createStore } from 'redux';
 import configureStore from './redux/store';
 
 // import AppReducer from './redux/reducer';
-import AppWithNavigationState from './AppNavigator';
+import AppWithNavigationState from './config/router';
 
 // Delete
 import { Tabs, Drawer } from './config/router.js';
