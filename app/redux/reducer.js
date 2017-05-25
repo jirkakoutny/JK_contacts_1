@@ -15,7 +15,7 @@ import { AppNavigator } from '../config/router';
 //   tempNavState
 // );
 
-const initialNavState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Contact'));
+const initialNavState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Contacts'));
 
 function nav(state = initialNavState, action) {
   let nextState;

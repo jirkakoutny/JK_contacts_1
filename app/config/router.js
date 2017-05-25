@@ -1,7 +1,7 @@
 import React from 'react';
 import { addNavigationHelpers, StackNavigator, TabNavigator, DrawerNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Platform } from 'react-native';
+import { Platform, StyleSheet, Button } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -78,17 +78,17 @@ export const Tabs = TabNavigator({
       tabBarIcon: ({ tintColor }) => <Icon name="ios-add" size={35} color={tintColor} />
     }
   },
-  Me: {
-    screen: MeStack,
-    navigationOptions: {
-      tabBarLabel: 'Me',
-      tabBarIcon: ({ tintColor }) => <Icon name="ios-contact" size={35} color={tintColor} />
-    }
-  }
+  // Me: {
+  //   screen: MeStack,
+  //   navigationOptions: {
+  //     tabBarLabel: 'Me',
+  //     tabBarIcon: ({ tintColor }) => <Icon name="ios-contact" size={35} color={tintColor} />
+  //   }
+  // }
 });
 
 export const Drawer = DrawerNavigator({
-  Contact: {
+  Contacts: {
     screen: ContactsStack,
     navigationOptions: {
       drawer: {
@@ -114,11 +114,7 @@ export const Drawer = DrawerNavigator({
   }
 })
 
-export const AppNavigator = DrawerNavigator({
-  Contact: { screen: ContactsStack, navigationOptions: { drawer: { label: 'Contacts', } } },
-    NewContact: { screen: NewContactStack, navigationOptions: { drawer: { label: 'New contact', } } },
-      Me: { screen: MeStack, navigationOptions: { drawer: { label: 'Me', } } },
-});
+export const AppNavigator = Platform.OS === 'ios' ? Tabs : Drawer;
 
 const AppWithNavigationState = ({ dispatch, nav }) => (
   <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
