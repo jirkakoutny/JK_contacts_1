@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import { me } from '../config/data';
 
 import { combineReducers } from 'redux';
 import { NavigationActions } from 'react-navigation';

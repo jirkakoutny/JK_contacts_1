@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { Header, Actions, Info } from '../components/UserDetails';
 import colors from '../config/colors';
-// import { me } from '../config/data';
 import { PrimaryButton } from '../components/Buttons';
 import { logout, loadMe, signin, requestPerson, requestPersonByUrl, connectionState } from '../redux/actions';
 

@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { FlatList, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-// import { contacts } from '../config/data';
 import colors from '../config/colors';
 import { ListItem } from '../components/ListItem';
 
