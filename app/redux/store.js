@@ -1,14 +1,14 @@
 
-import { AsyncStorage } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
+import { AsyncStorage } from 'react-native';
 import { persistStore, autoRehydrate } from 'redux-persist';
-import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger'
-import reducer from './reducer';
+import thunk from 'redux-thunk';
+
 import { syncFirebase } from '../firebase/firebase'
+import reducer from './reducer';
 
 const middleWare = [thunk, createLogger()];
-
 const createStoreWithMiddleware = applyMiddleware(...middleWare)(createStore);
 
 export default configureStore = (onComplete) => {
@@ -16,7 +16,7 @@ export default configureStore = (onComplete) => {
 
     syncFirebase(store)
 
-    AsyncStorage.clear();
+    //AsyncStorage.clear();
 
     persistStore(store, { storage: AsyncStorage }, onComplete);
 
