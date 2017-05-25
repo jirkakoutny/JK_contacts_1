@@ -8,6 +8,7 @@ import colors from '../config/colors';
 class Details extends Component {
   render() {
     console.log('Rendering contact detail');
+    console.log(this.props);
     var index = this.props.contacts.map(i => i.email).indexOf(this.props.navigation.state.params.email)
     const contact = this.props.contacts[index];
     return (
@@ -23,7 +24,7 @@ class Details extends Component {
 // map redux state properties to 
 const mapStateToProps = (state) => {
   return {
-    contacts: state.contacts,
+    contacts: state.reducer.contacts,
   };
 };
 
