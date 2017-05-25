@@ -78,13 +78,13 @@ export const Tabs = TabNavigator({
       tabBarIcon: ({ tintColor }) => <Icon name="ios-add" size={35} color={tintColor} />
     }
   },
-  // Me: {
-  //   screen: MeStack,
-  //   navigationOptions: {
-  //     tabBarLabel: 'Me',
-  //     tabBarIcon: ({ tintColor }) => <Icon name="ios-contact" size={35} color={tintColor} />
-  //   }
-  // }
+  Me: {
+    screen: MeStack,
+    navigationOptions: {
+      tabBarLabel: 'Me',
+      tabBarIcon: ({ tintColor }) => <Icon name="ios-contact" size={35} color={tintColor} />
+    }
+  }
 });
 
 export const Drawer = DrawerNavigator({
