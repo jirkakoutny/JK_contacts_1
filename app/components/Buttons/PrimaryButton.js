@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, View } from 'react-native';
 
 import styles from './styles';
 
-const PrimaryButton = ({ label, onPress}) => {
+const PrimaryButton = ({ label, onPress }) => {
   return (
     <View style={styles.primaryButtonContainer}>
       <TouchableOpacity

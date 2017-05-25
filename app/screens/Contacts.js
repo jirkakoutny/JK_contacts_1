@@ -12,7 +12,7 @@ class Contacts extends Component {
   };
 
   render() {
-        console.log('Rendering contacts');
+    console.log('Rendering contacts');
     console.log(this.props);
     const contacts = this.props.contacts;
     return (

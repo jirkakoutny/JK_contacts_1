@@ -66,8 +66,7 @@ class Me extends Component {
         </ScrollView>
       );
     }
-    else
-    {
+    else {
       return (
         <ScrollView style={{ backgroundColor: colors.background }}>
 

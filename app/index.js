@@ -16,12 +16,12 @@ class App extends Component {
     this.state = {
       isLoading: true,
       store: configureStore(() => this.setState({ isLoading: false })),
-    };    
+    };
     console.log("******************** App constructor ******************** ");
   }
 
   // store = createStore(AppReducer);
-  
+
   render() {
     if (this.state.isLoading)
       return null;
@@ -33,7 +33,7 @@ class App extends Component {
         <AppWithNavigationState />
       </Provider>
       //<Provider store={this.state.store}>
-        //{index}
+      //{index}
       //</Provider>
     );
   }
