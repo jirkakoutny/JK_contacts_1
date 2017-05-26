@@ -54,6 +54,7 @@ export const signout = () => {
 
   return (dispatch, getState) => {
     authRef.signOut().then(function () {
+      console.log('Dispatichg logout success');
       dispatch({ type: 'LOGOUT_SUCCESS' });
     }).catch(function (error) {
       var errorCode = error.code;

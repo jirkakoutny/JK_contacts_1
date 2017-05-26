@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Header, Actions, Info } from '../components/UserDetails';
 import colors from '../config/colors';
 import { PrimaryButton } from '../components/Buttons';
-import { logout, loadMe, signin, requestPerson, requestPersonByUrl, connectionState } from '../redux/actions';
+import { signout, loadMe, signin, requestPerson, requestPersonByUrl, connectionState } from '../redux/actions';
 
 class Me extends Component {
   componentDidMount() {
@@ -37,8 +37,6 @@ class Me extends Component {
   };
 
   render() {
-    console.log('Rendering me');
-    console.log(this.props);
     const me = this.props.me;
     if (me) {
       return (
@@ -58,7 +56,7 @@ class Me extends Component {
           />
           <PrimaryButton
             label='LOGOUT'
-            onPress={() => this.props.dispatch(logout())}
+            onPress={() => this.props.dispatch(signout())}
           />
           <Actions {...me} />
           <Info {...me} />

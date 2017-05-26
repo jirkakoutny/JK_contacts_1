@@ -75,7 +75,7 @@ const Tabs = TabNavigator({
     screen: NewContactStack,
     navigationOptions: {
       tabBarLabel: 'New Contact',
-      tabBarIcon: ({ tintColor }) => <Icon name="ios-add" size={35} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <Icon name="ios-add" size={35} color={tintColor} />,
     }
   },
   Me: {
@@ -102,7 +102,7 @@ const Drawer = DrawerNavigator({
       drawer: {
         label: 'New Contact',
       }
-    }
+    },
   },
   Me: {
     screen: MeStack,
@@ -128,5 +128,6 @@ const mapStateToProps = state => ({
 });
 
 export const AppNavigator = Platform.OS === 'ios' ? Tabs : Drawer;
+
 export default connect(mapStateToProps)(AppWithNavigationState);
 

@@ -22,6 +22,14 @@ function nav(state = initialState, action) {
         // case 'Test':
         //     nextState = AppNavigator.router.getStateForAction(action, state);
         //     break;
+        case 'LOGOUT_SUCCESS':
+            console.log('LOGOUT NAVIGATOR')
+
+            nextState = AppNavigator.router.getStateForAction(
+                NavigationActions.navigate({ routeName: 'NewContact' }),
+                state);
+            console.log(nextState);
+            break;
         default:
             nextState = AppNavigator.router.getStateForAction(action, state);
             break;
