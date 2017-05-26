@@ -31,7 +31,7 @@ class Contacts extends Component {
 const mapStateToProps = (state) => {
   return {
     me: state.me,
-    contacts: state.reducer.contacts,
+    contacts: state.app.contacts,
     people: state.people,
     personIndex: state.personIndex,
     actionQueue: state.actionQueue,

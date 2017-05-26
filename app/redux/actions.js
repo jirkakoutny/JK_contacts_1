@@ -52,20 +52,10 @@ export const loadMe = ({ index = 1 }) => {
   };
 }
 
-export const logout = () => {
-  console.log('Try to logout...');
 
-  return (dispatch, getState) => {
-    authRef.signOut().then(function () {
-      // Sign-out successful.
-      console.log('Logout success');
-      dispatch({ type: 'LOGOUT_SUCCESS' });
-    }).catch(function (error) {
-      // An error happened.
-      console.log('Logout error');
-      dispatch({ type: 'LOGOUT_FAILURE' });
-    })
-  };
+
+export const meLoaded = ({ me }) => {
+  return { type: 'ME_LOADED', me: me };
 };
 
 export const signin = ({ login, password }) => {
@@ -75,11 +65,9 @@ export const signin = ({ login, password }) => {
   return (dispatch, getState) => {
     authRef.signInWithEmailAndPassword(login, password).then(
       function () {
-        console.log('Signin success');
-        // dispatch({ type: 'SIGN_IN_SUCCESS' });
+        dispatch({ type: 'SIGN_IN_SUCCESS' });
       }
     ).catch(function (error) {
-      // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
 
@@ -87,25 +75,34 @@ export const signin = ({ login, password }) => {
       console.log('Signing in failed with ' + errorMessage);
 
       dispatch({ type: 'SIGN_IN_FAILURE' });
-      //  return { type: 'CONNECTION_ONLINE' }; 
     });
   };
 };
 
-export const setAuthUser = (user) => {
-  console.log('Setauthuserr user: ' + user);
-  return { type: 'SET_AUTH_USER', payload: user };
+export const signout = () => {
+  console.log('Signout');
+
+  return (dispatch, getState) => {
+    authRef.signOut().then(function () {
+      dispatch({ type: 'LOGOUT_SUCCESS' });
+    }).catch(function (error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+      console.log('Signing in failed on ' + errorCode);
+      console.log('Signing in failed with ' + errorMessage);
+
+      dispatch({ type: 'LOGOUT_FAILURE' });
+    })
+  };
 };
 
-export const meLoaded = ({ me }) => {
-  return { type: 'ME_LOADED', me: me };
+export const login = (user) => {
+  console.log('Login ' + user);
+  return { type: 'LOGIN', payload: user };
 };
 
-export const goOnline = ({ }) => {
-  return { type: 'CONNECTION_ONLINE' };
+export const logout = () => {
+  console.log('Logout');
+  return { type: 'LOGOUT_SUCCESS' };
 };
-
-export const goOffline = ({ }) => {
-  return { type: 'CONNECTION_ONLINE' };
-};
-

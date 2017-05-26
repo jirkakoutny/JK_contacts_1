@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase'
-import { setAuthUser, addItemSuccess, removeItemSuccess, goOnline, goOffline } from '../redux/actions'
+import { login, logout, addItemSuccess, removeItemSuccess, goOnline, goOffline } from '../redux/actions'
 
 import config from '../config/firebase'
 
@@ -10,13 +10,12 @@ const firebaseApp = initializeApp({
   storageBucket: config.STORAGE_BUCKET
 })
 
+export const authRef = firebaseApp.auth();
 export const contactsRef = firebaseApp.database().ref('Contacts')
 export const meRef = firebaseApp.database().ref('Me')
-// const connectedRef = firebaseApp.database().ref('.info/connected')
-export const authRef = firebaseApp.auth();
 
 export function syncFirebase(store) {
-console.log('Firebase sync');
+  console.log('Firebase sync');
   meRef.on('value', (snapshot) => {
     console.log('Me data');
     console.log(snapshot.val());
@@ -50,35 +49,14 @@ console.log('Firebase sync');
     // deleteComment(postElement, data.key);
   });
 
-
   firebaseApp.auth().onAuthStateChanged((user) => {
-
-    console.log("Authentication state changed");
-    console.log(user);
-
-    // this.setState({ loaded: true });
-
     if (user) {
       console.log("Authentication state changed - authenticated");
-      console.log(user);
-     // store.dispatch({ type: 'SIGN_IN_SUCCESS', payload: user });
-      store.dispatch(setAuthUser(user));
+      store.dispatch(login(user));
     }
     else {
       console.log("Authentication state changed - NOT authenticated");
+      store.dispatch(logout);
     }
   });
-
-
-  //   itemsRef.on('child_removed', (snapshot) => {
-  //     store.dispatch(removeItemSuccess(snapshot.val().id))
-  //   })
-
-  //   connectedRef.on('value', snap => {
-  //     if (snap.val() === true) {
-  //       store.dispatch(goOnline())
-  //     } else {
-  //       store.dispatch(goOffline())
-  //     }
-  //   })
 }

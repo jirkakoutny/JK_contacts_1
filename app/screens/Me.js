@@ -80,7 +80,7 @@ const mapStateToProps = (state) => {
   console.log('This is state ')
   console.log(state);
   return {
-    me: state.reducer.me,
+    me: state.app.me,
     people: state.people,
     personIndex: state.personIndex,
     actionQueue: state.actionQueue,
