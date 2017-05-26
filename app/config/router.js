@@ -2,16 +2,16 @@ import React from 'react';
 import { addNavigationHelpers, StackNavigator, TabNavigator, DrawerNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Platform, StyleSheet, Button } from 'react-native';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { DrawerButton } from '../components/Header';
+import { capitalizeFirstLetter } from '../helpers/string';
 
 import Contacts from '../screens/Contacts';
 import Details from '../screens/Details';
 import NewContact from '../screens/NewContact';
 import Me from '../screens/Me';
-import { DrawerButton } from '../components/Header';
-
-import { capitalizeFirstLetter } from '../helpers/string';
 
 const LeftDrawerButton = ({ navigate }) => {
   if (Platform.OS === 'android') {
@@ -21,7 +21,7 @@ const LeftDrawerButton = ({ navigate }) => {
   return null;
 }
 
-export const ContactsStack = StackNavigator({
+const ContactsStack = StackNavigator({
   Contacts: {
     screen: Contacts,
     navigationOptions: ({ navigation }) => ({
@@ -39,7 +39,7 @@ export const ContactsStack = StackNavigator({
   },
 });
 
-export const NewContactStack = StackNavigator({
+const NewContactStack = StackNavigator({
   NewContact: {
     screen: NewContact,
     navigationOptions: ({ navigation }) => ({
@@ -51,7 +51,7 @@ export const NewContactStack = StackNavigator({
   },
 });
 
-export const MeStack = StackNavigator({
+const MeStack = StackNavigator({
   Me: {
     screen: Me,
     navigationOptions: ({ navigation }) => ({
@@ -63,7 +63,7 @@ export const MeStack = StackNavigator({
   },
 });
 
-export const Tabs = TabNavigator({
+const Tabs = TabNavigator({
   Contacts: {
     screen: ContactsStack,
     navigationOptions: {
@@ -87,7 +87,7 @@ export const Tabs = TabNavigator({
   }
 });
 
-export const Drawer = DrawerNavigator({
+const Drawer = DrawerNavigator({
   Contacts: {
     screen: ContactsStack,
     navigationOptions: {
@@ -114,8 +114,6 @@ export const Drawer = DrawerNavigator({
   }
 })
 
-export const AppNavigator = Platform.OS === 'ios' ? Tabs : Drawer;
-
 const AppWithNavigationState = ({ dispatch, nav }) => (
   <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
 );
@@ -129,5 +127,6 @@ const mapStateToProps = state => ({
   nav: state.nav,
 });
 
+export const AppNavigator = Platform.OS === 'ios' ? Tabs : Drawer;
 export default connect(mapStateToProps)(AppWithNavigationState);
 

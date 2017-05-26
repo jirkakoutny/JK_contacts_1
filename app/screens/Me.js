@@ -23,17 +23,17 @@ class Me extends Component {
     const { dispatch, actionQueue } = this.props;
 
     // log connectivity state
-    console.log(isConnected ? 'Connected' : 'Not connected');
+    // console.log(isConnected ? 'Connected' : 'Not connected');
 
     // dispatch connectivity state change event with parameter isConnected
     dispatch(connectionState({ status: isConnected }));
 
     // if is connected and tehere is something unprocessed in action queue, process it
-    if (isConnected && actionQueue != null && actionQueue.length > 0) {
-      actionQueue.forEach((url) => {
-        this.props.dispatch(requestPersonByUrl({ url }));
-      });
-    }
+    // if (isConnected && actionQueue != null && actionQueue.length > 0) {
+    //   actionQueue.forEach((url) => {
+    //     this.props.dispatch(requestPersonByUrl({ url }));
+    //   });
+    // }
   };
 
   render() {
@@ -77,15 +77,10 @@ class Me extends Component {
 
 // map redux state properties to 
 const mapStateToProps = (state) => {
-  console.log('This is state ')
-  console.log(state);
   return {
     me: state.app.me,
-    people: state.people,
-    personIndex: state.personIndex,
-    actionQueue: state.actionQueue,
-    isConnected: state.isConnected,
-    user: state.user
+    user: state.auth.user,
+    isConnected: state.app.isConnected,
   };
 };
 

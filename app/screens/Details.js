@@ -21,10 +21,9 @@ class Details extends Component {
   }
 }
 
-// map redux state properties to 
 const mapStateToProps = (state) => {
   return {
-    contacts: state.reducer.contacts,
+    contacts: state.app.contacts,
   };
 };
 

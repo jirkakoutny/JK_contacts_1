@@ -27,15 +27,9 @@ class Contacts extends Component {
   }
 }
 
-// map redux state properties to 
 const mapStateToProps = (state) => {
   return {
-    me: state.me,
     contacts: state.app.contacts,
-    people: state.people,
-    personIndex: state.personIndex,
-    actionQueue: state.actionQueue,
-    isConnected: state.isConnected,
   };
 };
 
