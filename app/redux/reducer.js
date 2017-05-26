@@ -4,10 +4,10 @@ import app from './reducers/app';
 import auth from './reducers/auth';
 import nav from './reducers/nav';
 
-const AppReducer = combineReducers({
+const reducer = combineReducers({
   app,
   auth,
   nav
 });
 
-export default AppReducer;
+export default reducer;
