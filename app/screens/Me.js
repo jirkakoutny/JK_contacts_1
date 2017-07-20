@@ -50,7 +50,7 @@ class Me extends Component {
             {this.props.isConnected ? 'Online' : 'Disconnected'}
           </Text>
           <PrimaryButton
-            label={this.props.user ? this.props.user.email : "Unknown"}
+            label={this.props.user ? this.props.user.email : "Login"}
             onPress={() => this.props.signIn({ login: "jirka@koutny.cz", password: "test01" })}
           />
           <PrimaryButton

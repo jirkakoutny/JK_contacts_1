@@ -12,6 +12,7 @@ import Contacts from '../screens/Contacts';
 import Details from '../screens/Details';
 import NewContact from '../screens/NewContact';
 import Me from '../screens/Me';
+import Login from '../screens/Login';
 
 const LeftDrawerButton = ({ navigate }) => {
   if (Platform.OS === 'android') {
@@ -20,6 +21,18 @@ const LeftDrawerButton = ({ navigate }) => {
 
   return null;
 }
+
+const LoginStack = StackNavigator({
+  Login: {
+    screen: Login,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Login',
+      headerLeft: (
+        <LeftDrawerButton {...navigation} />
+      ),
+    }),
+  },
+});
 
 const ContactsStack = StackNavigator({
   Contacts: {
@@ -84,6 +97,13 @@ const Tabs = TabNavigator({
       tabBarLabel: 'Me',
       tabBarIcon: ({ tintColor }) => <Icon name="ios-contact" size={35} color={tintColor} />
     }
+  },
+  Login: {
+    screen: LoginStack,
+    navigationOptions: {
+      tabBarLabel: 'Login',
+      tabBarIcon: ({ tintColor }) => <Icon name="ios-contact" size={35} color={tintColor} />
+    }
   }
 });
 
@@ -109,6 +129,14 @@ const Drawer = DrawerNavigator({
     navigationOptions: {
       drawer: {
         label: 'Me',
+      }
+    }
+  },
+  Login: {
+    screen: LoginStack,
+    navigationOptions: {
+      drawer: {
+        label: 'Login',
       }
     }
   }

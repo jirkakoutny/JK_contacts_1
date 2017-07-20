@@ -26,7 +26,7 @@ function nav(state = initialState, action) {
             console.log('LOGOUT NAVIGATOR')
 
             nextState = AppNavigator.router.getStateForAction(
-                NavigationActions.navigate({ routeName: 'NewContact' }),
+                NavigationActions.navigate({ routeName: 'Login' }),
                 state);
             console.log(nextState);
             break;
