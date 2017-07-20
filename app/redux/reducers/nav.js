@@ -30,6 +30,14 @@ function nav(state = initialState, action) {
                 state);
             console.log(nextState);
             break;
+        case 'CONTACT_DETAIL':
+            console.log('DETAIL NAVIGATOR')
+
+            nextState = AppNavigator.router.getStateForAction(
+                NavigationActions.navigate({ routeName: 'Details' }),
+                state);
+            console.log(nextState);
+            break;
         default:
             nextState = AppNavigator.router.getStateForAction(action, state);
             break;

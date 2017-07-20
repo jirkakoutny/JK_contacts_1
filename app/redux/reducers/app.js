@@ -11,11 +11,14 @@ function app(state = initialState, action) {
             return Object.assign({}, state, {
                 me: action.me,
             });
+        case 'CONTACT_DETAIL':
+            return Object.assign({}, state, {
+                contact: action.contact,
+            });
         case 'CONTACTS_LOADED':
             return Object.assign({}, state, {
                 contacts: action.contacts,
-            }
-            );
+            });
         case 'CONTACTS_CHILD_ADDED':
             var dup_array = state.contacts.slice();
             var index = dup_array.map(i => i.email).indexOf(action.contact.email)

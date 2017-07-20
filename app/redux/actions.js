@@ -6,6 +6,10 @@ export const meLoaded = (me) => {
   return { type: 'ME_LOADED', me: me };
 };
 
+export const contactDetail = (contact) => {
+  return { type: 'CONTACT_DETAIL', contact: contact };
+};
+
 export const contactsLoaded = (contacts) => {
   console.log('contacts dispatched');
   console.log(contacts);

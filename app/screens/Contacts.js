@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 
 import colors from '../config/colors';
 import { ListItem } from '../components/ListItem';
+import { contactDetail } from '../redux/actions';
 
 class Contacts extends Component {
   handleRowPress = (item) => {
-    this.props.navigation.navigate('Details', item);
+    // this.props.navigation.navigate('Details', item);
+    this.props.dispatch(contactDetail(item));
   };
 
   render() {

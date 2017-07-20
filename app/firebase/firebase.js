@@ -20,21 +20,21 @@ export function syncFirebase(store) {
     store.dispatch(meLoaded(snapshot.val()));
   })
 
-  // contactsRef.once('value', function (snapshot) {
-  //   store.dispatch(contactsLoaded(snapshot.val()));
-  // });
+  contactsRef.once('value', function (snapshot) {
+    store.dispatch(contactsLoaded(snapshot.val()));
+  });
 
-  // contactsRef.on('child_added', function (data) {
-  //   store.dispatch(contactsChildAdded(data.val()))
-  // });
+  contactsRef.on('child_added', function (data) {
+    store.dispatch(contactsChildAdded(data.val()))
+  });
 
-  // contactsRef.on('child_changed', function (data) {
-  //   store.dispatch(contactsChildChanged(data.val()));
-  // });
+  contactsRef.on('child_changed', function (data) {
+    store.dispatch(contactsChildChanged(data.val()));
+  });
 
-  // contactsRef.on('child_removed', function (data) {    
-  //   store.dispatch(contactsChildRemoved(data.val()));
-  // });
+  contactsRef.on('child_removed', function (data) {    
+    store.dispatch(contactsChildRemoved(data.val()));
+  });
 
   firebaseApp.auth().onAuthStateChanged((user) => {
     if (user) {
