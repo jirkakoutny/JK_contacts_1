@@ -9,8 +9,6 @@ class Details extends Component {
   render() {
     console.log('Rendering contact detail');
     console.log(this.props);
-    var index = this.props.contacts.map(i => i.email).indexOf(this.props.navigation.state.params.email)
-    // const contact = this.props.contacts[index];
     const contact = this.props.contact;
     return (
       <ScrollView style={{ backgroundColor: colors.background }}>
@@ -24,7 +22,7 @@ class Details extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    contacts: state.app.contacts,
+    // contacts: state.app.contacts,
     contact: state.app.contact
   };
 };

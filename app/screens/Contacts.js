@@ -7,11 +7,6 @@ import { ListItem } from '../components/ListItem';
 import { contactDetail } from '../redux/actions';
 
 class Contacts extends Component {
-  handleRowPress = (item) => {
-    // this.props.navigation.navigate('Details', item);
-    this.props.dispatch(contactDetail(item));
-  };
-
   render() {
     console.log('Rendering contacts');
     console.log(this.props);
@@ -21,7 +16,7 @@ class Contacts extends Component {
         style={{ backgroundColor: colors.background }}
         data={contacts}
         renderItem={({ item }) =>
-          <ListItem contact={item} onPress={() => this.handleRowPress(item)} />
+          <ListItem contact={item} onPress={() => this.props.contactDetail(item)} />
         }
         keyExtractor={(item) => item.email}
       />
@@ -35,4 +30,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Contacts);
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    contactDetail: (item) => {
+      dispatch(contactDetail(item))
+    }
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contacts);

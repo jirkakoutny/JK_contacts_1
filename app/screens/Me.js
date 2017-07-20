@@ -20,13 +20,13 @@ class Me extends Component {
 
   // connectivity state change handler
   _handleConnectionChange = (isConnected) => {
-    const { dispatch, actionQueue } = this.props;
+    // const { dispatch, actionQueue } = this.props;
 
     // log connectivity state
     // console.log(isConnected ? 'Connected' : 'Not connected');
 
     // dispatch connectivity state change event with parameter isConnected
-    dispatch(connectionState({ status: isConnected }));
+    this.props.connectionState({ status: isConnected });
 
     // if is connected and tehere is something unprocessed in action queue, process it
     // if (isConnected && actionQueue != null && actionQueue.length > 0) {
@@ -46,17 +46,16 @@ class Me extends Component {
             label="Edit Profile"
             onPress={() => null}
           />
-          <PrimaryButton
-            label={this.props.isConnected ? 'Load me' : 'Disconnected'}
-            onPress={() => this.props.dispatch(loadMe({ index: 1 }))}
-          />
+          <Text>
+            {this.props.isConnected ? 'Online' : 'Disconnected'}
+          </Text>
           <PrimaryButton
             label={this.props.user ? this.props.user.email : "Unknown"}
-            onPress={() => this.props.dispatch(signin({ login: "jirka@koutny.cz", password: "test01" }))}
+            onPress={() => this.props.signIn({ login: "jirka@koutny.cz", password: "test01" })}
           />
           <PrimaryButton
             label='LOGOUT'
-            onPress={() => this.props.dispatch(signout())}
+            onPress={() => this.props.signout()}
           />
           <Actions {...me} />
           <Info {...me} />
@@ -73,7 +72,6 @@ class Me extends Component {
   };
 }
 
-// map redux state properties to 
 const mapStateToProps = (state) => {
   return {
     me: state.app.me,
@@ -82,4 +80,16 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Me);
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    signIn: ({ login, password }) => {
+      dispatch(signin({ login, password }))
+    },
+    signout: () => { dispatch(signout()) },
+    connectionState: ({ status }) => {
+      dispatch(connectionState({ status }))
+    },
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Me);
